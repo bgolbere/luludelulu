@@ -1,7 +1,7 @@
 [project]
 name = "luludelulu"
 version = "0.1.0"
-description = "Add your description here"
+description = "Bet on whether jokes will land - TCT research platform"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -13,3 +13,8 @@ dependencies = [
     "sqlalchemy>=2.0.44",
     "uvicorn>=0.38.0",
 ]
+
+#[build-system]
+#requires = ["hatchling"]
+#build-backend = "hatchling.build"
+
