@@ -5,9 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LULUDELULU — A card game about how well you actually know each other</title>
 <meta name="description" content="A two-player cooperative card game. Answer weird questions with numbers. Try to match. Play in your browser or with a deck of cards.">
+<meta property="og:type" content="website">
 <meta property="og:title" content="LULUDELULU">
 <meta property="og:description" content="Answer weird questions with numbers. Try to match. Discover where you sync.">
 <meta property="og:url" content="https://luluthegame.com">
+<meta property="og:image" content="https://luluthegame.com/site-assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LULUDELULU — a 2-player card game about how well you actually know each other.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LULUDELULU">
+<meta name="twitter:description" content="Answer weird questions with numbers. Try to match. Discover where you sync.">
+<meta name="twitter:image" content="https://luluthegame.com/site-assets/og-image.png">
 <style>
   :root {
     --bg-1: #1a1033;
@@ -144,10 +153,10 @@
     <h1>LULUDELULU</h1>
     <div class="tag">Delulu is the solulu</div>
     <p class="pitch">A two-player card game about how well you <em>actually</em> know each other.</p>
-    <p class="sub">Answer weird questions with numbers. Try to match. ~15 minutes.</p>
+    <p class="sub">Played in your browser with a regular deck of cards. Answer weird questions with numbers, try to match. ~15 minutes.</p>
     <div class="cta-row">
-      <a class="btn" href="./randomizer/index.html">▶ Play in your browser</a>
-      <a class="btn ghost" href="#get">Play with cards</a>
+      <a class="btn" href="./randomizer/index.html">▶ Play now — it's free</a>
+      <a class="btn ghost" href="#how">How it works</a>
     </div>
   </div>
 </header>
@@ -166,13 +175,14 @@
     </div>
   </section>
 
-  <section>
+  <section id="how">
     <h2>How to play</h2>
     <div class="panel">
+      <p style="margin-top:0">Open the game on any phone or laptop — it reads out the prompts and keeps score. You play along with a real deck of cards.</p>
       <div class="steps">
         <div class="step"><div class="n">1</div><div>Split a deck: Ace–10 of two suits (Ace = 1, no face cards). Each player takes one suit. Grab ~50 chips — coins, candy, pasta, anything.</div></div>
-        <div class="step"><div class="n">2</div><div>Read a prompt. Both players secretly commit one card face down.</div></div>
-        <div class="step"><div class="n">3</div><div>Flip at the same time. Score by how close you matched. Repeat for 10 rounds.</div></div>
+        <div class="step"><div class="n">2</div><div>The game shows a prompt. Both players secretly commit one card face down.</div></div>
+        <div class="step"><div class="n">3</div><div>Flip at the same time, tap how close you matched, and the game scores it. Repeat for 10 rounds.</div></div>
       </div>
       <div class="rules-two">
         <div class="rule"><b>The Lock</b>Once a card is face down, it can’t be touched, changed, or swapped.</div>
@@ -198,23 +208,26 @@
   </section>
 
   <section id="get">
-    <h2>Get the game</h2>
+    <h2>Start playing</h2>
+    <div class="panel" style="margin-bottom:14px">
+      <p style="margin:0"><strong>What you need:</strong> the game open on any phone or laptop, a regular deck of cards (just Ace–10 of two suits), and about 50 chips — coins, candy, pasta, anything. The app reads the prompts and keeps score; the cards are how you each lock in your number. Setup takes 30 seconds.</p>
+    </div>
     <div class="get-grid">
       <div class="get-card">
-        <div class="ic">📱</div>
-        <h3>Play in your browser</h3>
-        <p>The full game, no install. Picks prompts, tracks score, runs the Drift Check and the Delulu round. Works offline once loaded.</p>
+        <div class="ic">▶</div>
+        <h3>Play now</h3>
+        <p>Opens in your browser — no install. Picks prompts, tracks the score, runs the Drift Check and the final Delulu round. Works offline once loaded.</p>
         <a class="btn" href="./randomizer/index.html">Open the game</a>
       </div>
       <div class="get-card">
-        <div class="ic">🃏</div>
-        <h3>Play with cards</h3>
-        <p>Print the one-page rules card, grab a deck and some chips, and play at the table. Setup takes 30 seconds.</p>
+        <div class="ic">🖨️</div>
+        <h3>Print the rules</h3>
+        <p>A one-page rules card for the table — handy if you'd rather not keep glancing at the screen. Reference only; you still play in the browser.</p>
         <a class="btn pink" href="./site-assets/luludelulu-rules.pdf" download>Download rules (PDF)</a>
       </div>
     </div>
     <div class="panel" style="margin-top:14px">
-      <p style="margin:0;color:var(--muted);font-size:14px">Want the offline app on your phone?
+      <p style="margin:0;color:var(--muted);font-size:14px">Want it offline on your phone?
       <a href="./randomizer/index.html" download="luludelulu.html">Download the game as a single file</a>
       and open it any time — no network needed.</p>
     </div>
@@ -262,7 +275,7 @@
 
 <script>
   // ---- CONFIG ----
-  var EMAIL = "bgolbere@gmail.com";
+  var EMAIL = "hello@luluthegame.com";
   var FORM_URL = ""; // paste your Google Form link here to show the "Fill out the quick form" button
 
   var subject = "Luludelulu playtest feedback";

@@ -9,15 +9,15 @@
 
 ---
 
-This repository hosts the public site for **luluthegame.com** via GitHub Pages.
+This repository hosts the public site for **luluthegame.com**, deployed on
+**Cloudflare Pages** (fast deploys, automatic SSL).
 
 ## What's here
 
 ```
 index.html        Landing page — how to play, get the game, QR, feedback
 randomizer/        The full game, playable in a browser (offline-capable, all prompts inlined)
-site-assets/       Printable rules PDF, QR code, print-ready QR poster
-CNAME              Custom domain config for GitHub Pages
+site-assets/       Printable rules PDF, QR code, print-ready QR poster, social preview image
 ```
 
 ## Run it locally
@@ -31,17 +31,19 @@ python3 -m http.server 8000
 
 ## How the game works
 
-Someone reads a prompt. Both players secretly pick a number 1–10 and lay a card
-face down. Flip together. Match or come close, you earn chips together. The game
-runs four phases — concrete, social, esoteric, then a blind "Delulu" round — with
-a halftime Drift Check to talk about your misses. ~15 minutes, two players.
+You play in your browser with a regular deck of cards (Ace–10 of two suits) and
+some chips. The site reads out the prompts and keeps score; the cards are how you
+each secretly lock in a number 1–10. Lay them face down, flip together — match or
+come close and you earn chips together. The game runs four phases (concrete,
+social, esoteric, then a blind "Delulu" round) with a halftime Drift Check to talk
+about your misses. ~15 minutes, two players.
 
-Play in your browser, or print the [rules card](site-assets/luludelulu-rules.pdf)
-and use a regular deck (Ace–10 of two suits) plus some chips.
+Prefer a table reference instead of glancing at the screen? Print the
+[rules card](site-assets/luludelulu-rules.pdf).
 
 ## Feedback
 
-Playtesting now — feedback welcome at **bgolbere@gmail.com**.
+Playtesting now — feedback welcome at **hello@luluthegame.com**.
 
 ---
 
