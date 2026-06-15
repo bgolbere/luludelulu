@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LULUDELULU — A card game about how well you actually know each other</title>
+<meta name="description" content="A two-player cooperative card game. Answer weird questions with numbers. Try to match. Play in your browser or with a deck of cards.">
+<meta property="og:title" content="LULUDELULU">
+<meta property="og:description" content="Answer weird questions with numbers. Try to match. Discover where you sync.">
+<meta property="og:url" content="https://luluthegame.com">
+<style>
+  :root {
+    --bg-1: #1a1033;
+    --bg-2: #2d1b5e;
+    --card-bg: #fffdf5;
+    --card-ink: #1a1033;
+    --accent: #ffd166;
+    --accent-2: #ef476f;
+    --good: #06d6a0;
+    --muted: rgba(255,255,255,0.66);
+    --soft: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.14);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    background-attachment: fixed;
+    color: #fff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--accent); }
+
+  /* Hero */
+  header.hero { text-align: center; padding: 64px 20px 40px; }
+  .hero h1 {
+    font-size: clamp(40px, 11vw, 76px);
+    letter-spacing: 0.10em; margin: 0; font-weight: 800;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .tag {
+    color: var(--accent); font-size: 13px; letter-spacing: 0.28em;
+    text-transform: uppercase; margin-top: 10px; font-weight: 600;
+  }
+  .hero .pitch {
+    font-size: clamp(18px, 3.4vw, 22px); color: #fff;
+    max-width: 560px; margin: 22px auto 0;
+  }
+  .hero .sub { color: var(--muted); font-size: 15px; margin-top: 10px; }
+
+  /* Buttons */
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 0; border-radius: 14px; padding: 15px 22px;
+    font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none;
+    background: var(--accent); color: var(--card-ink);
+    transition: transform 0.06s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.ghost { background: transparent; color: #fff; border: 1px solid var(--border); }
+  .btn.pink { background: var(--accent-2); color: #fff; }
+  .btn.sm { padding: 11px 16px; font-size: 14px; }
+
+  /* Sections */
+  section { padding: 26px 0; }
+  h2 {
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 16px; font-weight: 700;
+  }
+  .panel {
+    background: var(--soft); border: 1px solid var(--border);
+    border-radius: 18px; padding: 22px;
+  }
+  .panel + .panel { margin-top: 14px; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; }
+
+  /* How-to steps */
+  .steps { display: grid; gap: 12px; counter-reset: step; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step .n {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: var(--card-ink);
+    display: grid; place-items: center; font-weight: 800; font-size: 15px;
+  }
+  .rules-two { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 4px; }
+  .rule { background: rgba(255,209,102,0.08); border: 1px solid rgba(255,209,102,0.25);
+          border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+  .rule b { color: var(--accent); display: block; margin-bottom: 2px; letter-spacing: 0.04em; }
+
+  /* Phase table */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 6px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  td.c, th.c { text-align: center; }
+  tr.drift td { color: var(--accent-2); font-style: italic; }
+  .maxnote { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  /* Get the game cards */
+  .get-grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  .get-card {
+    background: var(--soft); border: 1px solid var(--border); border-radius: 18px;
+    padding: 22px; display: flex; flex-direction: column;
+  }
+  .get-card .ic { font-size: 28px; margin-bottom: 8px; }
+  .get-card h3 { margin: 0 0 6px; font-size: 18px; }
+  .get-card p { color: var(--muted); font-size: 14px; flex: 1; }
+  .get-card .btn { margin-top: 16px; justify-content: center; }
+
+  /* Feedback */
+  .q-list { margin: 0; padding-left: 20px; }
+  .q-list li { margin-bottom: 8px; }
+  .fb-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+
+  /* QR */
+  .qr-box { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  .qr-img {
+    background: #fff; border-radius: 16px; padding: 14px; flex: none;
+    width: 168px; height: 168px;
+  }
+  .qr-img img { width: 100%; height: 100%; display: block; }
+  .qr-text { flex: 1; min-width: 220px; }
+  .qr-url { font-size: 22px; font-weight: 800; letter-spacing: 0.02em; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 36px 20px 56px; }
+  footer .sig { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
+
+  @media (max-width: 560px) {
+    .get-grid, .rules-two { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>LULUDELULU</h1>
+    <div class="tag">Delulu is the solulu</div>
+    <p class="pitch">A two-player card game about how well you <em>actually</em> know each other.</p>
+    <p class="sub">Answer weird questions with numbers. Try to match. ~15 minutes.</p>
+    <div class="cta-row">
+      <a class="btn" href="./randomizer/index.html">▶ Play in your browser</a>
+      <a class="btn ghost" href="#get">Play with cards</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <div class="panel">
+      <p class="lead">Someone reads a question out loud — like <em>“How scary is a spider?”</em>
+      Both players secretly pick a number from 1 to 10 and lay a card face down.
+      Flip together. Match or come close, you earn chips <strong>together</strong>.
+      Way off, you earn nothing — but you learn how differently you each see the world.</p>
+      <p>It’s cooperative, not competitive. No trivia, no right answers. Just: can you
+      think like each other? It starts easy, gets wonderfully strange, and ends with
+      a moment of pure intuition.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to play</h2>
+    <div class="panel">
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div>Split a deck: Ace–10 of two suits (Ace = 1, no face cards). Each player takes one suit. Grab ~50 chips — coins, candy, pasta, anything.</div></div>
+        <div class="step"><div class="n">2</div><div>Read a prompt. Both players secretly commit one card face down.</div></div>
+        <div class="step"><div class="n">3</div><div>Flip at the same time. Score by how close you matched. Repeat for 10 rounds.</div></div>
+      </div>
+      <div class="rules-two">
+        <div class="rule"><b>The Lock</b>Once a card is face down, it can’t be touched, changed, or swapped.</div>
+        <div class="rule"><b>Simultaneous Reveal</b>Both flip at once. No peeking, no signals.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <table>
+        <thead><tr><th>Phase</th><th>Theme</th><th class="c">Match</th><th class="c">±1</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1 — Calibration</strong></td><td>concrete / physical</td><td class="c">1</td><td class="c">0</td></tr>
+          <tr><td><strong>2 — Abstraction</strong></td><td>social / feelings</td><td class="c">2</td><td class="c">1</td></tr>
+          <tr class="drift"><td>— Drift Check —</td><td>60 sec. Talk about your misses.</td><td class="c">—</td><td class="c">—</td></tr>
+          <tr><td><strong>3 — Vibe Check</strong></td><td>esoteric / weird</td><td class="c">3</td><td class="c">1</td></tr>
+          <tr><td><strong>4 — Delulu</strong></td><td>blind commit before the prompt</td><td class="c">5</td><td class="c">0</td></tr>
+        </tbody>
+      </table>
+      <p class="maxnote">Max team score: 46 chips → <strong>Static</strong> (0–10) ·
+      <strong>Syncing</strong> (11–25) · <strong>Resonant</strong> (26–35) ·
+      <strong>Telepathic</strong> (36+).</p>
+    </div>
+  </section>
+
+  <section id="get">
+    <h2>Get the game</h2>
+    <div class="get-grid">
+      <div class="get-card">
+        <div class="ic">📱</div>
+        <h3>Play in your browser</h3>
+        <p>The full game, no install. Picks prompts, tracks score, runs the Drift Check and the Delulu round. Works offline once loaded.</p>
+        <a class="btn" href="./randomizer/index.html">Open the game</a>
+      </div>
+      <div class="get-card">
+        <div class="ic">🃏</div>
+        <h3>Play with cards</h3>
+        <p>Print the one-page rules card, grab a deck and some chips, and play at the table. Setup takes 30 seconds.</p>
+        <a class="btn pink" href="./site-assets/luludelulu-rules.pdf" download>Download rules (PDF)</a>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <p style="margin:0;color:var(--muted);font-size:14px">Want the offline app on your phone?
+      <a href="./randomizer/index.html" download="luludelulu.html">Download the game as a single file</a>
+      and open it any time — no network needed.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Playtesters — tell me what you think</h2>
+    <div class="panel">
+      <p class="lead">You played it. I want your gut reaction. A few quick things:</p>
+      <ol class="q-list">
+        <li>Who did you play with, and which version (adult / kids · Exhaustion / Free Play)?</li>
+        <li>What was your final team score and rank?</li>
+        <li>Where did you light up — the best moment?</li>
+        <li>Where did you get confused or stuck?</li>
+        <li>Would you gift it? What would make it more giftable?</li>
+      </ol>
+      <div class="fb-actions">
+        <a class="btn" id="email-btn" href="#">✉ Email my feedback</a>
+        <!-- When your Google Form is ready, paste its URL into FORM_URL in the script below. -->
+        <a class="btn ghost" id="form-btn" href="#" style="display:none">Fill out the quick form</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Share it — scan to play</h2>
+    <div class="panel">
+      <div class="qr-box">
+        <div class="qr-img"><img src="./site-assets/qr-luluthegame.png" alt="QR code to luluthegame.com"></div>
+        <div class="qr-text">
+          <div class="qr-url">luluthegame.com</div>
+          <p style="color:var(--muted);font-size:14px;margin:8px 0 16px">Point a phone camera here to open the game. Print it for the table, or show it on screen at a gathering.</p>
+          <a class="btn sm ghost" href="./site-assets/play-qr.html" target="_blank">Open printable QR poster</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="sig">Delulu is the solulu.</p>
+  <p>luluthegame.com · a cooperative card game · currently in playtesting</p>
+</footer>
+
+<script>
+  // ---- CONFIG ----
+  var EMAIL = "bgolbere@gmail.com";
+  var FORM_URL = ""; // paste your Google Form link here to show the "Fill out the quick form" button
+
+  var subject = "Luludelulu playtest feedback";
+  var body = [
+    "Thanks for playing Luludelulu! A few quick questions — answer any that grab you:",
+    "",
+    "1) Who did you play with, and which version (adult/kids, Exhaustion/Free Play)?",
+    "",
+    "2) Final team score and rank?",
+    "",
+    "3) Best moment — where did you light up?",
+    "",
+    "4) Where did you get confused or stuck?",
+    "",
+    "5) Would you gift it? What would make it more giftable?",
+    "",
+    "Anything else is welcome too —"
+  ].join("\n");
+
+  document.getElementById("email-btn").href =
+    "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+  if (FORM_URL) {
+    var fb = document.getElementById("form-btn");
+    fb.href = FORM_URL; fb.style.display = "";
+  }
+</script>
+</body>
+</html>

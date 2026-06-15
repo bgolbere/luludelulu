@@ -1,0 +1,20 @@
+# LULUDELULU — public Pages repo.
+# Strategy: ignore EVERYTHING by default, then allow only the player-facing site.
+# This keeps the patent context, CLAUDE.md, and internal docs out of the public repo.
+
+/*
+
+# --- allow the public site ---
+!/.gitignore
+!/CNAME
+!/README.md
+!/index.html
+!/site-assets
+
+# randomizer: ship only the built game, not the build script or prompt sources
+!/randomizer
+/randomizer/*
+!/randomizer/index.html
+
+# never publish OS cruft
+.DS_Store

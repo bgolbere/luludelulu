@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LULUDELULU — Scan to Play</title>
+<style>
+  @page { size: portrait; margin: 16mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(160deg, #1a1033, #2d1b5e);
+    color: #fff; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center; padding: 32px;
+  }
+  .poster {
+    text-align: center; max-width: 520px; width: 100%;
+  }
+  h1 { font-size: 56px; letter-spacing: 0.10em; margin: 0; font-weight: 800; }
+  .tag { color: #ffd166; letter-spacing: 0.28em; text-transform: uppercase;
+         font-size: 14px; margin-top: 10px; font-weight: 600; }
+  .pitch { font-size: 22px; margin: 26px auto 0; max-width: 420px; }
+  .qr { background: #fff; border-radius: 22px; padding: 22px; display: inline-block; margin: 30px 0 18px; }
+  .qr img { width: 300px; height: 300px; display: block; }
+  .url { font-size: 30px; font-weight: 800; letter-spacing: 0.02em; }
+  .how { color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 8px; }
+  .sig { color: #ffd166; font-weight: 600; letter-spacing: 0.04em; margin-top: 26px; }
+  .print-btn {
+    position: fixed; top: 16px; right: 16px; border: 0; border-radius: 12px;
+    padding: 11px 16px; font-size: 14px; font-weight: 700; cursor: pointer;
+    background: #ffd166; color: #1a1033;
+  }
+  @media print {
+    body { background: #fff !important; color: #1a1033 !important;
+           -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tag, .sig { color: #ef476f !important; }
+    .how { color: #555 !important; }
+    .qr { border: 1px solid #ddd; }
+    .print-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+  <div class="poster">
+    <h1>LULUDELULU</h1>
+    <div class="tag">Delulu is the solulu</div>
+    <p class="pitch">A 2-player card game about how well you actually know each other.</p>
+    <div class="qr"><img src="./qr-luluthegame.png" alt="QR code to luluthegame.com"></div>
+    <div class="url">luluthegame.com</div>
+    <p class="how">Scan with your phone camera, or type it in. Play in your browser or with a deck of cards. ~15 min.</p>
+    <p class="sig">Grab a partner. Find your wavelength.</p>
+  </div>
+</body>
+</html>
